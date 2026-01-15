@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   phonebook.hpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggomes-v <ggomes-v@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 11:53:10 by ggomes-v          #+#    #+#             */
-/*   Updated: 2026/01/08 15:43:31 by ggomes-v         ###   ########.fr       */
+/*   Updated: 2026/01/15 14:43:47 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 #include <string>
 #include <iostream>
 #include <cctype>
-#include <algorithm>
+#include <iomanip>
 #include "contact.hpp"
 
 #define MAX_CONTACTS 8
@@ -32,6 +32,7 @@ class PhoneBook
     public:
         PhoneBook(void);
         ~PhoneBook(void);
+
         void    add();
         void    search();
 };

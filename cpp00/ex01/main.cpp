@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ggomes-v <ggomes-v@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/08 12:48:55 by ggomes-v          #+#    #+#             */
-/*   Updated: 2026/01/08 15:51:58 by ggomes-v         ###   ########.fr       */
+/*   Updated: 2026/01/15 14:41:28 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ int     main(void)
         std::cout << "-> Options :\n      ADD\n      SEARCH\n      EXIT" << std::endl;
         if (!std::getline(std::cin, cmdline))
             break ;
-        //std::transform(cmdline.begin(), cmdline.end(), cmdline.begin(), ::tolower);
         if (cmdline == "ADD")
         {
             phonebook.add();
@@ -43,5 +42,3 @@ int     main(void)
     }
     return (0);
 }
-
-//std::getline(std::cin, cmdline)

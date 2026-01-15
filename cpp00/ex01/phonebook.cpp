@@ -1,7 +1,7 @@
 #include "phonebook.hpp"
 
 PhoneBook::PhoneBook(void){
-    this->_index = 0;
+    this->_index = 1;
     this->_savedCount = 0;
 }
 
@@ -33,7 +33,48 @@ void    PhoneBook::add(){
     this->_contacts[this->_savedCount % 8].setsecret(secret);
     this->_savedCount++;
 }
-
+std::string     truncate(std::string str)
+{
+    if (str.length() > 10)
+        return (str.substr(0, 9) + ".");
+    else
+        return (str);
+}
 void    PhoneBook::search(){
-    std::cout << "SEARCH" << std::endl;
+    int x = 0;
+    std::string index;
+
+    if (this->_savedCount == 0)
+    {
+        std::cout << "Empty phonebook" << std::endl;
+        return ;
+    }
+    std::cout << "Index | First name | Last name | Nickname" << std::endl;
+    while (x < _savedCount)
+    {
+        std::cout << x << " | ";
+        std::cout << std::setw(10) << truncate(this->_contacts[x].getfirstName()) << " | ";
+        std::cout << std::setw(10) << truncate(this->_contacts[x].getlastName()) << " | ";
+        std::cout << std::setw(10) << truncate(this->_contacts[x].getnickName()) << std::endl;
+        x++;        
+    }
+    std::cout << "Enter index of contact to view:" << std::endl;
+    std::getline(std::cin, index);
+
+    int i = index[0] - '0';
+
+    if (index.empty() || i >= _savedCount || index.length() > 1 || index[0] < '0' || index[0] > '7')
+    {
+        std::cout << "Invalid input." << std::endl;
+        return ;
+    }
+    else
+    {
+        std::cout << "First name:" << this->_contacts[index[0] - '0'].getfirstName() << std::endl;
+        std::cout << "Last name:" << this->_contacts[index[0] - '0'].getlastName() << std::endl;
+        std::cout << "Nickname:" << this->_contacts[index[0] - '0'].getnickName() << std::endl;
+        std::cout << "Phone number:" << this->_contacts[index[0] - '0'].getphoneNumber() << std::endl;
+        std::cout << "Darkest secret:" << this->_contacts[index[0] - '0'].getsecret() << std::endl;
+
+    }
 }
