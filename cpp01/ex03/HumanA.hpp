@@ -3,6 +3,7 @@
 #include <iostream>
 #include <iomanip>
 #include <string>
+#include "Weapon.hpp"
 
 class HumanA
 {
@@ -11,7 +12,7 @@ class HumanA
         Weapon &_weapon;
 
     public:
-        HumanA(std::string name, std::string weapon);
+        HumanA(std::string name, Weapon &weapon);
         ~HumanA();
         void    attack();
-}
+};
