@@ -1,16 +1,5 @@
 #include "Fixed.hpp"
-/* 
-        Fixed();
-        Fixed(const int n);
-        Fixed(const float n);
-        ~Fixed();
-        Fixed::Fixed(const Fixed &copy);
-        Fixed   &operator=(const Fixed &copy);
-        float   toFloat(void) const;
-        int     toInt(void) const;
-        int     getRawBits(void) const;
-        void    setRawBits(int const n); */
-    
+
 Fixed::Fixed(){
 };
 
