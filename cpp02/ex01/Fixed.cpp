@@ -1,8 +1,3 @@
-/*
-        Fixed   &operator=(const Fixed &copy);
-        int     getRawBits(void) const;
-        void    setRawBits(int const value);
-*/
 #include "Fixed.hpp"
 /*
     Constructor & Destructors
@@ -12,11 +7,15 @@ Fixed::Fixed(): _value(0){
     std::cout << "Default Constructor" << std::endl;
 };
 
+Fixed::Fixed(const Fixed &copy): _value(copy._value){
+    std::cout << "Copy Constructor called" << std::endl;
+};
+
 Fixed::Fixed(const int value): _value(value << _bits){
     std::cout << "Int Constructor Called" << std::endl;
 };
 
-Fixed::Fixed(const float value): _value(round(value * (1 << _bits))){
+Fixed::Fixed(const float value): _value(roundf(value * (1 << _bits))){
     std::cout << "Float Constructor Called" << std::endl;
 };
 
