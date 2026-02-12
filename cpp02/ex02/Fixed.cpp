@@ -54,7 +54,7 @@ int   Fixed::toInt(void) const {
 };
 
 float   Fixed::toFloat(void) const {
-    return (this->_value / (1 << _bits));
+    return (this->_value / (float)(1 << _bits));
 };
 
 
@@ -102,7 +102,66 @@ Fixed   Fixed::operator+(const Fixed &other) const {
     return (temp);
 };
 
-/* Fixed   Fixed::operator-(const Fixed &other) const {};
-Fixed   Fixed::operator*(const Fixed &other) const {};
-Fixed   Fixed::operator/(const Fixed &other) const {};
- */
+Fixed   Fixed::operator-(const Fixed &other) const {
+    Fixed temp;
+
+    temp._value = this->_value - other._value;
+    return (temp);
+};
+
+Fixed   Fixed::operator*(const Fixed &other) const {
+    Fixed temp;
+
+    temp._value = ((this->_value * other._value) >> _bits);
+    return (temp);
+};
+
+Fixed   Fixed::operator/(const Fixed &other) const {
+    Fixed temp;
+
+    temp._value = (this->_value << _bits) / other._value;
+    return (temp);
+};
+
+
+
+Fixed   &Fixed::operator++(void) {
+    this->_value++;
+    return (*this);
+};
+
+Fixed   Fixed::operator++(int) {
+    Fixed temp = *this;
+    this->_value++;
+    return (temp);
+};
+
+Fixed   &Fixed::operator--(void) {
+    this->_value--;
+    return (*this);
+};
+
+Fixed   Fixed::operator--(int) {
+    Fixed temp = *this;
+    this->_value--;
+    return (temp);
+};
+
+
+
+
+Fixed &Fixed::min(Fixed &a, Fixed &b){
+    return (a < b) ? a : b;
+};
+
+Fixed &Fixed::max(Fixed &a, Fixed &b){
+    return (a > b) ? a : b;
+};
+
+const Fixed     &Fixed::min(const Fixed &a, const Fixed &b){
+    return (a < b) ? a : b;
+};
+
+const Fixed     &Fixed::max(const Fixed &a, const Fixed &b){
+    return (a > b) ? a : b;
+};
