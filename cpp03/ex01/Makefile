@@ -2,7 +2,7 @@
 #                                   SETTINGS                                   #
 #==============================================================================#
 
-NAME = ClapTrap
+NAME = ScavTrap
 
 CC = c++
 FLAGS = -Wall -Wextra -Werror -std=c++98
@@ -10,7 +10,7 @@ FLAGS = -Wall -Wextra -Werror -std=c++98
 RM = rm -rf
 VAL = valgrind --leak-check=full --show-leak-kinds=all
 
-SRC = main.cpp ClapTrap.cpp
+SRC = main.cpp ClapTrap.cpp ScavTrap.cpp
 
 OBJ_DIR = obj
 OBJS = $(SRC:%.cpp=$(OBJ_DIR)/%.o)
