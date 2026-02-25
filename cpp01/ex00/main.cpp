@@ -15,7 +15,7 @@ int main(void)
         return (1);
     }
     zombie->announce();
-    delete zombie;
+    delete(zombie);
     randomChump(ZombieName);
     return (0);
 }
