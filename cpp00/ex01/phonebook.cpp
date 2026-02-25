@@ -33,6 +33,7 @@ void    PhoneBook::add(){
     this->_contacts[this->_savedCount % 8].setsecret(secret);
     this->_savedCount++;
 }
+
 std::string     truncate(std::string str)
 {
     if (str.length() > 10)
@@ -40,6 +41,7 @@ std::string     truncate(std::string str)
     else
         return (str);
 }
+
 void    PhoneBook::search(){
     int x = 0;
     std::string index;
@@ -50,7 +52,7 @@ void    PhoneBook::search(){
         return ;
     }
     std::cout << "Index | First name | Last name | Nickname" << std::endl;
-    while (x < _savedCount)
+    while (x < _savedCount && x < 8)
     {
         std::cout << x << " | ";
         std::cout << std::setw(10) << truncate(this->_contacts[x].getfirstName()) << " | ";
