@@ -2,7 +2,7 @@
 #                                   SETTINGS                                   #
 #==============================================================================#
 
-NAME = pointers
+NAME = Humans
 
 CC = c++
 FLAGS = -Wall -Wextra -Werror -std=c++98
