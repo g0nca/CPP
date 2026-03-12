@@ -62,7 +62,7 @@ void    ClapTrap::beRepaired(unsigned int amount){
     {
         _health += amount;
         _energy--;
-        std::cout << "ClapTrap " << _name << " repairs itself for " << amount << " hit points!" << std::endl;
+        std::cout << "ClapTrap " << _name << " repairs itself for " << amount << " hit points spending 1 energy point" << std::endl;
     }
     else
     {

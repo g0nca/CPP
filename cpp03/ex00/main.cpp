@@ -59,6 +59,10 @@ int main()
 	{
 		ClapTrap claptrap;
 		claptrap.displayInfo();
+		claptrap.attack("HandSome Jack");
+		claptrap.displayInfo();
+		claptrap.setName("ClapTrap");
+		claptrap.displayInfo();
 	}
 	std::cout << std::endl << std::endl;
 	std::cout << "----------------------------------" << std::endl;
