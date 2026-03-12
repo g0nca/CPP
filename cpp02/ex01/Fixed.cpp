@@ -20,6 +20,7 @@ Fixed::Fixed(const float value): _value(roundf(value * (1 << _bits))){
 };
 
 Fixed::~Fixed(){
+    std::cout << "Destructor Called" << std::endl;
 };
 
 /*
@@ -48,10 +49,11 @@ void    Fixed::setRawBits(int const value) {
     Conversion
 */
 float   Fixed::toFloat(void) const {
-    return (this->_value / (1 << _bits));
+    return (this->_value / static_cast<float>(1 << _bits));
 };
 
 int     Fixed::toInt(void) const {
+    //std::cout << "toINT: " << this->_value << std::endl;
     return (this->_value >> _bits);
 };
 
