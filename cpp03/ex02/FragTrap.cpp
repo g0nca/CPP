@@ -1,7 +1,7 @@
 #include "FragTrap.hpp"
 
-FragTrap::FragTrap(){
-    std::cout << "Default Constructor Called" << std::endl;
+FragTrap::FragTrap(): ClapTrap() {
+    std::cout << "FragTrap - Default Constructor Called" << std::endl;
     std::cout << "FragTrap " << this->_name << " is on !" <<std::endl;
 };
 
