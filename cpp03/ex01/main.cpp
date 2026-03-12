@@ -4,6 +4,9 @@
 int main()
 {
     // ClapTrap Tests (from ex00)
+    {
+        ScavTrap Test;
+    }
     std::cout << std::endl << std::endl;
     std::cout << "ClapTrap Test" << std::endl;
     {
