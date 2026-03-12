@@ -1,15 +1,15 @@
 #include "ClapTrap.hpp"
 
 ClapTrap::ClapTrap() : _name("default"), _hitPoints(10), _energyPoints(10), _attackDamage(0){
-    std::cout << "Default Constructor Called" << std::endl;
+    std::cout << "ClapTrap - Default Constructor Called" << std::endl;
 };
 
-ClapTrap::ClapTrap(std::string name) : _name(name), _hitPoints(10), _energyPoints(10), _attackDamage(10){
-    std::cout << "Name Constructor Called" << std::endl;
+ClapTrap::ClapTrap(std::string name) : _name(name), _hitPoints(0), _energyPoints(10), _attackDamage(10){
+    std::cout << "ClapTrap - Name Constructor Called" << std::endl;
 };
 
 ClapTrap::ClapTrap(const ClapTrap &copy){
-    std::cout << "Copy Constructor Called" << std::endl;
+    std::cout << "ClapTrap - Copy Constructor Called" << std::endl;
     this->_name = copy._name;
     this->_hitPoints = copy._hitPoints;
     this->_energyPoints = copy._energyPoints;
@@ -17,7 +17,7 @@ ClapTrap::ClapTrap(const ClapTrap &copy){
 };
 
 ClapTrap    &ClapTrap::operator=(const ClapTrap &copy){
-    std::cout << "Assignment Operator Called" << std::endl;
+    std::cout << "ClapTrap - Assignment Operator Called" << std::endl;
 
     if (this != &copy)
     {
@@ -30,7 +30,7 @@ ClapTrap    &ClapTrap::operator=(const ClapTrap &copy){
 };
 
 ClapTrap::~ClapTrap(){
-    std::cout << "Destructor Called" << std::endl;
+    std::cout << "ClapTrap - Destructor Called" << std::endl;
 };
 
 
@@ -42,10 +42,12 @@ void    ClapTrap::attack(const std::string& target){
 		std::cout << "ClapTrap " << _name << " attacks " << target << ", causing " << _attackDamage << " points of damage!" << std::endl;
         _energyPoints--;
     }
-    else
-    {
-        std::cout << "ClapTrap " << _name << " is out of energy or hit points" << std::endl;
-    }
+    else if (_hitPoints < 0)
+        std::cout << "ClapTrap " << _name << " is out of hit points" << std::endl;
+    else if (_energyPoints < 0)
+        std::cout << "ClapTrap " << _name << " is out of energy points" << std::endl;
+    else if (_attackDamage < 0)
+        std::cout << "ClapTrap " << _name << " has no attack damage" << std::endl;
 };
 
 void    ClapTrap::takeDamage(unsigned int amount){
