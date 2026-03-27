@@ -1,6 +1,16 @@
 #include "Fixed.hpp"
 
 Fixed::Fixed(){
+    std::cout << "Default Constructor Called - Inicialized with 0" << std::endl;
+    this->_value = 0;
+};
+
+Fixed::Fixed(const int n): _value(n << _bits){
+    std::cout << "Int Constructor Called" << std::endl;
+};
+
+Fixed::Fixed(const float n): _value(roundf(n * (1 << _bits))) {
+    std::cout << "Float Constructor Called" << std::endl;
 };
 
 Fixed::Fixed(const Fixed &copy): _value(copy._value){
@@ -14,15 +24,8 @@ Fixed &Fixed::operator=(const Fixed &copy){
     return (*this);
 };
 
-Fixed::Fixed(const int n): _value(n << _bits){
-    std::cout << "Int Constructor Called" << std::endl;
-};
-
-Fixed::Fixed(const float n): _value(roundf(n * (1 << _bits))) {
-    std::cout << "Float Constructor Called" << std::endl;
-};
-
 Fixed::~Fixed(){
+    std::cout << "Destructor Called" << std::endl;
 };
 
 
@@ -43,7 +46,7 @@ int   Fixed::toInt(void) const {
 };
 
 float   Fixed::toFloat(void) const {
-    return (this->_value / (float)(1 << _bits));
+    return (this->_value / static_cast<float>(1 << _bits));
 };
 
 

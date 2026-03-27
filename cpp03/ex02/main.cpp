@@ -34,6 +34,8 @@ int main()
     std::cout << "----------------------------------" << std::endl;
     std::cout << "FragTrap Basic Test" << std::endl;
     {
+        FragTrap TEST;
+        TEST.displayInfo();
         FragTrap fragtrap("Destroyer");
         fragtrap.displayInfo();
         fragtrap.attack("Badass Enemy");
