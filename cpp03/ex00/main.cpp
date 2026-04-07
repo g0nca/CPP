@@ -6,7 +6,7 @@ int main()
 	std::cout << std::endl << std::endl;
 	std::cout << "Test" << std::endl;
 	{
-		ClapTrap claptrap("Kim");
+		ClapTrap claptrap();
 
 		claptrap.attack("Handsome Jack");
 		claptrap.takeDamage(5);

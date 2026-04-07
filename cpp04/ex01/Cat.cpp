@@ -21,6 +21,7 @@ Cat::Cat(const Cat &copy): Animal(copy){
 
 Cat::~Cat(){
     std::cout << "Cat : Desctructor " << std::endl;
+    delete (this->_brain);
 };
 
 Cat     &Cat::operator=(const Cat &copy){
