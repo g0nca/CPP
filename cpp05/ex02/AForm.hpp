@@ -1,29 +1,32 @@
 #pragma once
 
 #include "Bureaucrat.hpp"
+#include "ShrubberyCreationForm.hpp"
+
 class Bureaucrat;
 
-class Form 
+class AForm 
 {
-    private:
+    protected:
         const std::string       _formName;
         bool                    _isSigned;
         const int               _gradeTosign;
         const int               _gradeToexecute;
     public:
-        Form(void);
-        Form(std::string form_name, int gradeSign, int gradeExecute);
-        Form(const Form &copy);
-        ~Form();
+        AForm(void);
+        AForm(std::string form_name, int gradeSign, int gradeExecute);
+        AForm(const AForm &copy);
+        virtual ~AForm();
 
-        Form &operator=(const Form &copy);
+        AForm &operator=(const AForm &copy);
 
         std::string     getName() const;
         bool            getIsSigned() const;
         int             getSign() const;
         int             getExecute() const;
 
-        void            beSigned(Bureaucrat &bureaucrat);
+        virtual void            beSigned(Bureaucrat &bureaucrat) = 0;
+        void                    beExecuted(Bureaucrat &bureaucrat);
 
         class GradeTooHighException : public std::exception
         {
@@ -43,5 +46,17 @@ class Form
                 }
         };
 
+        class FileNotOpenedException : public std::exception
+        {
+            public:
+                virtual const char* what() const throw();
+        };
+        
+        class FormNotSignedException : public std::exception
+        {
+            public:
+                virtual const char* what() const throw();
+        };
+
 };
-std::ostream &operator<<(std::ostream &out, Form &form);
+std::ostream &operator<<(std::ostream &out, AForm &form);
