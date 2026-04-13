@@ -1,4 +1,4 @@
-#include "Form.hpp"
+#include "AForm.hpp"
 #include "Bureaucrat.hpp"
 
 AForm::AForm(void): _formName("Default Form"), _isSigned(false), _gradeTosign(150), _gradeToexecute(150) {
@@ -7,14 +7,14 @@ AForm::AForm(void): _formName("Default Form"), _isSigned(false), _gradeTosign(15
 
 AForm::AForm(std::string form_name, int gradeSign, int gradeExecute): _formName(form_name), _isSigned(false), _gradeTosign(gradeSign), _gradeToexecute(gradeExecute) {
     if (gradeSign < 1 || gradeExecute < 1)
-        throw Form::GradeTooHighException();
+        throw AForm::GradeTooHighException();
     else if (gradeSign > 150 || gradeExecute > 150)
-        throw Form::GradeTooLowException();
+        throw AForm::GradeTooLowException();
     std::cout << "Form : Name Constructor " << std::endl;
 };
 
 
-AForm::AForm(const Form &copy) : _formName(copy._formName), _gradeTosign(copy._gradeTosign), _gradeToexecute(copy._gradeToexecute) {
+AForm::AForm(const AForm &copy) : _formName(copy._formName), _gradeTosign(copy._gradeTosign), _gradeToexecute(copy._gradeToexecute) {
     std::cout << "Form : Copy Constructor " << std::endl;
 };
 
@@ -56,17 +56,17 @@ void            AForm::beSigned(Bureaucrat &bureaucrat) {
     std::cout << "Grade Bureacrat " << bureaucrat.getGrade() << std::endl;
     std::cout << "Grade To Sign " << this->_gradeTosign << std::endl; 
     if (bureaucrat.getGrade() > this->_gradeTosign)
-        throw (Form::GradeTooLowException());
+        throw (AForm::GradeTooLowException());
     _isSigned = true;
 };
 
-void AForm::beExecuted(Bureaucrat const &bureaucrat) const
+/* void AForm::beExecuted(Bureaucrat const &bureaucrat) const
 {
     if (!this->_isSigned)
         throw AForm::FormNotSignedException();
-    if (bureaucrat.getGrade() > this->_gradeToExecute)
+    if (bureaucrat.getGrade() > this->_gradeToexecute)
         throw AForm::GradeTooLowException();
-};
+}; */
 
 const char* AForm::FormNotSignedException::what() const throw()
 {

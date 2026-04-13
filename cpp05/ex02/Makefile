@@ -10,7 +10,7 @@ FLAGS = -Wall -Wextra -Werror -std=c++98
 RM = rm -rf
 VAL = valgrind --leak-check=full --show-leak-kinds=all
 
-SRC = main.cpp Form.cpp Bureaucrat.cpp 
+SRC = main.cpp AForm.cpp Bureaucrat.cpp ShrubberyCreationForm.cpp
 
 OBJ_DIR = obj
 OBJS = $(SRC:%.cpp=$(OBJ_DIR)/%.o)

@@ -1,7 +1,15 @@
 #pragma once
 
+#include <fstream>
+#include <iostream>
+#include <string>
+#include <exception>
+#include <cstdlib>
+#include <ctime>
+#include <fstream>
+#include <cstdlib>
+#include <ctime>
 #include "Bureaucrat.hpp"
-#include "ShrubberyCreationForm.hpp"
 
 class Bureaucrat;
 
@@ -25,8 +33,9 @@ class AForm
         int             getSign() const;
         int             getExecute() const;
 
-        virtual void            beSigned(Bureaucrat &bureaucrat) = 0;
-        void                    beExecuted(Bureaucrat &bureaucrat);
+        void            beSigned(Bureaucrat &bureaucrat);
+        //void            beExecuted(Bureaucrat const &bureaucrat) const;
+        virtual void    execute(Bureaucrat &bureaucrat) = 0;
 
         class GradeTooHighException : public std::exception
         {

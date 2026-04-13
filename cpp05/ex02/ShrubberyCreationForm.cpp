@@ -1,7 +1,5 @@
 #include "ShrubberyCreationForm.hpp"
 
-#include "ShrubberyCreationForm.hpp"
-
 ShrubberyCreationForm::ShrubberyCreationForm(void) : AForm("Default", 145, 137), _target("Default")
 {
     std::cout << "Shrubbery: Default constructor called" << std::endl;
@@ -40,7 +38,7 @@ std::string ShrubberyCreationForm::getTarget() const
 
 void ShrubberyCreationForm::execute(Bureaucrat const &executor) const
 {
-    AForm::beExecuted(executor); // Usa beExecuted em vez de execute
+    AForm::execute(executor);
     std::ofstream file((_target + "_shrubbery").c_str());
     if (!file.is_open())
     {
@@ -58,6 +56,6 @@ void ShrubberyCreationForm::execute(Bureaucrat const &executor) const
 
 std::ostream    &operator<<(std::ostream &out, ShrubberyCreationForm &form)
 {
-    out << "ShrubberyCreationForm : " << form.getName() << ", Target: " << form.getTarget() << ", Is signed: " << form.isSigned() << std::endl;
+    std::cout << "ShrubberyCreationForm : " << form.getName() << ", Target: " << form.getTarget() << ", Is signed: " << form.isSigned() << std::endl;
     return (out);
 };
