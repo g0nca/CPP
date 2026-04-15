@@ -2,7 +2,7 @@
 #                                   SETTINGS                                   #
 #==============================================================================#
 
-NAME = Form
+NAME = AForm
 
 CC = c++
 FLAGS = -Wall -Wextra -Werror -std=c++98
@@ -10,7 +10,7 @@ FLAGS = -Wall -Wextra -Werror -std=c++98
 RM = rm -rf
 VAL = valgrind --leak-check=full --show-leak-kinds=all
 
-SRC = main.cpp AForm.cpp Bureaucrat.cpp ShrubberyCreationForm.cpp
+SRC = main.cpp AForm.cpp Bureaucrat.cpp ShrubberyCreationForm.cpp RobotomyRequestForm.cpp
 
 OBJ_DIR = obj
 OBJS = $(SRC:%.cpp=$(OBJ_DIR)/%.o)

@@ -1,5 +1,7 @@
 #include "Bureaucrat.hpp"
 #include "AForm.hpp"
+#include "ShrubberyCreationForm.hpp"
+#include "RobotomyRequestForm.hpp"
 
 void printHeader(const std::string& title)
 {
@@ -13,6 +15,13 @@ void printHeader(const std::string& title)
 int main()
 {
 	std::cout << "TESTING BUREAUCRAT AND FORM CLASSES" << std::endl;
- 
+	{
+		printHeader("ShrubberyCreationForm");
+		Bureaucrat Bureaucrat("Joao", 20);
+		RobotomyRequestForm RobotomyForm("Primeiro");
+	
+		Bureaucrat.signForm(RobotomyForm);
+		RobotomyForm.execute(Bureaucrat);
+	}
 	return 0;
 }

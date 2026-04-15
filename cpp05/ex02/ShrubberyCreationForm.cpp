@@ -38,24 +38,33 @@ std::string ShrubberyCreationForm::getTarget() const
 
 void ShrubberyCreationForm::execute(Bureaucrat const &executor) const
 {
-    AForm::execute(executor);
-    std::ofstream file((_target + "_shrubbery").c_str());
-    if (!file.is_open())
-    {
-        throw AForm::FileNotOpenedException();
+    try {
+        if (!getIsSigned())
+            throw AForm::FormNotSignedException();
+
+        if (executor.getGrade() > this->getExecute())
+            throw AForm::GradeTooLowException();
+
+        std::ofstream file((_target + "_shrubbery").c_str());
+
+        if (!file.is_open())
+            throw AForm::FileNotOpenedException();
+
+        file << "    /\\\n";
+        file << "   /**\\\n";
+        file << "  /****\\\n";
+        file << " /******\\\n";
+        file << "/********\\\n";
+        file << "    ||\n";
+        file.close();
     }
-    std::ofstream file(target + "_shrubbery");
-    file << "    /\\\n";
-    file << "   /**\\\n";
-    file << "  /****\\\n";
-    file << " /******\\\n";
-    file << "/********\\\n";
-    file << "    ||\n";
-    file.close();
+    catch (const std::exception& e) {
+        std::cerr << e.what() << std::endl;
+    }
 };
 
-std::ostream    &operator<<(std::ostream &out, ShrubberyCreationForm &form)
+std::ostream    &operator<<(std::ostream &out, const ShrubberyCreationForm &form)
 {
-    std::cout << "ShrubberyCreationForm : " << form.getName() << ", Target: " << form.getTarget() << ", Is signed: " << form.isSigned() << std::endl;
+    std::cout << "ShrubberyCreationForm : " << form.getName() << ", Target: " << form.getTarget() << ", Is signed: " << form.getIsSigned() << std::endl;
     return (out);
 };
