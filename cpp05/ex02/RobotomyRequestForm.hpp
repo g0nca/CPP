@@ -1,9 +1,5 @@
 #pragma once
 
-#include <string>
-#include <iostream>
-#include <exception>
-
 #include "Bureaucrat.hpp"
 #include "AForm.hpp"
 
