@@ -18,6 +18,11 @@ class PresidentialPardonForm : public AForm
         std::string     getTarget() const;
 
         void    execute(const Bureaucrat& target) const;
+
+        static AForm *createPresidentialPardonForm(std::string const &target)
+        {
+            return (new PresidentialPardonForm(target));
+        }
 };
 
 std::ostream    &operator<<(std::ostream &out, PresidentialPardonForm const &form);

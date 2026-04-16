@@ -1,132 +1,108 @@
 #include "Bureaucrat.hpp"
 #include "AForm.hpp"
-#include "ShrubberyCreationForm.hpp"
 #include "RobotomyRequestForm.hpp"
 #include "PresidentialPardonForm.hpp"
+#include "ShrubberyCreationForm.hpp"
+#include "Intern.hpp"
 
-void printHeader(const std::string& title)
-{
+void printHeader(const std::string& title) {
     std::cout << "\n";
     std::cout << "===================================================" << std::endl;
     std::cout << "=== " << title << " ===" << std::endl;
     std::cout << "===================================================" << std::endl;
 }
 
-void testShrubberyCreationForm()
-{
-    printHeader("SHRUBBERY CREATION FORM TEST");
+void testInternBasic() {
+    printHeader("TEST INTERN BASIC FUNCTIONALITY");
     
-    // Bureaucrat de baixo nível (pode assinar, não pode executar)
-    Bureaucrat lowBureaucrat("LowLevel", 140);
-    std::cout << lowBureaucrat << std::endl;
+    Intern someRandomIntern;
+    AForm *rrf = NULL;
+    AForm *random = NULL;
     
-    // Bureaucrat de alto nível (pode assinar e executar)
-    Bureaucrat highBureaucrat("HighLevel", 1);
-    std::cout << highBureaucrat << std::endl;
+    std::cout << "Creating a robotomy request form..." << std::endl;
+    rrf = someRandomIntern.makeForm("robotomy request", "Bender");
+    if (rrf) {
+        std::cout << *rrf << std::endl;
+    }
     
-    // Teste com formulário
-    ShrubberyCreationForm form("Garden");
-    std::cout << "Form: " << form << std::endl;
+    std::cout << "\nTrying to create an invalid form type..." << std::endl;
+    try {
+        random = someRandomIntern.makeForm("random", "Bender");
+        if (random) {
+            std::cout << *random << std::endl;
+        }
+    } catch(const std::exception& e) {
+        std::cout << "Exception caught: " << e.what() << std::endl;
+    }
     
-    // Teste de assinatura e execução com bureaucrat de baixo nível
-    std::cout << "\n--- Testing with Low Level Bureaucrat ---" << std::endl;
-    lowBureaucrat.signForm(form);
-    lowBureaucrat.execute(form);
+    std::cout << "\nTesting form with bureaucrats..." << std::endl;
+    Bureaucrat lowLevel("LowLevel", 150);
+    std::cout << lowLevel << std::endl;
     
-    // Teste de execução com bureaucrat de alto nível em formulário já assinado
-    std::cout << "\n--- Testing with High Level Bureaucrat ---" << std::endl;
-    highBureaucrat.execute(form);
-}
-
-void testRobotomyRequestForm()
-{
-    printHeader("ROBOTOMY REQUEST FORM TEST");
-    
-    // Bureaucrat de médio nível (pode assinar, não pode executar)
-    Bureaucrat midBureaucrat("MidLevel", 70);
-    std::cout << midBureaucrat << std::endl;
-    
-    // Bureaucrat de alto nível (pode assinar e executar)
-    Bureaucrat highBureaucrat("HighLevel", 1);
-    std::cout << highBureaucrat << std::endl;
-    
-    // Teste com formulário
-    RobotomyRequestForm form("Robot");
-    std::cout << "Form: " << form << std::endl;
-    
-    // Teste de assinatura e execução com bureaucrat de médio nível
-    std::cout << "\n--- Testing with Mid Level Bureaucrat ---" << std::endl;
-    midBureaucrat.signForm(form);
-    midBureaucrat.execute(form);
-    
-    // Teste de execução com bureaucrat de alto nível em formulário já assinado
-    std::cout << "\n--- Testing with High Level Bureaucrat (Multiple Attempts) ---" << std::endl;
-    for (int i = 0; i < 3; i++)
-	{
-        std::cout << "Attempt " << i + 1 << ": ";
-        highBureaucrat.execute(form);
+    if (rrf) {
+        lowLevel.signForm(*rrf);
+        
+        Bureaucrat midLevel("MidLevel", 40);
+        std::cout << midLevel << std::endl;
+        
+        midLevel.signForm(*rrf);
+        midLevel.execute(*rrf);
+        
+        delete rrf;
     }
 }
 
-void testPresidentialPardonForm()
-{
-    printHeader("PRESIDENTIAL PARDON FORM TEST");
+void testInternAllForms() {
+    printHeader("TEST INTERN ALL FORM TYPES");
     
-    // Bureaucrat de alto nível (pode assinar e executar)
-    Bureaucrat highBureaucrat("HighLevel", 1);
-    std::cout << highBureaucrat << std::endl;
+    Intern someRandomIntern;
+    AForm *rrf = NULL;
+    AForm *scf = NULL;
+    AForm *ppf = NULL;
     
-    // Bureaucrat de médio nível (pode assinar, não pode executar)
-    Bureaucrat midBureaucrat("MidLevel", 15);
-    std::cout << midBureaucrat << std::endl;
+    std::cout << "Creating all types of forms..." << std::endl;
+    rrf = someRandomIntern.makeForm("robotomy request", "Bender");
+    scf = someRandomIntern.makeForm("shrubbery creation", "Garden");
+    ppf = someRandomIntern.makeForm("presidential pardon", "Criminal");
     
-    // Teste com formulário
-    PresidentialPardonForm form("Criminal");
-    std::cout << "Form: " << form << std::endl;
-    
-    // Teste de assinatura com bureaucrat de médio nível
-    std::cout << "\n--- Testing with Mid Level Bureaucrat ---" << std::endl;
-    midBureaucrat.signForm(form);
-    midBureaucrat.execute(form);
-    
-    // Teste de execução com bureaucrat de alto nível em formulário já assinado
-    std::cout << "\n--- Testing with High Level Bureaucrat ---" << std::endl;
-    highBureaucrat.execute(form);
+    if (rrf && scf && ppf) {
+        std::cout << "\nForms created:" << std::endl;
+        std::cout << *rrf << std::endl;
+        std::cout << *scf << std::endl;
+        std::cout << *ppf << std::endl;
+        
+        std::cout << "\nTesting with bureaucrats..." << std::endl;
+        Bureaucrat lowLevel("LowLevel", 150);
+        std::cout << lowLevel << std::endl;
+        
+        lowLevel.signForm(*rrf);
+        lowLevel.signForm(*scf);
+        lowLevel.signForm(*ppf);
+        
+        Bureaucrat highLevel("HighLevel", 5);
+        std::cout << highLevel << std::endl;
+        
+        highLevel.signForm(*rrf);
+        highLevel.signForm(*scf);
+        highLevel.signForm(*ppf);
+        
+        highLevel.execute(*rrf);
+        highLevel.execute(*scf);
+        highLevel.execute(*ppf);
+        
+        delete rrf;
+        delete scf;
+        delete ppf;
+    }
 }
 
-void testEdgeCases()
-{
-    printHeader("EDGE CASES TEST");
-    
-    // Teste de execução de formulário não assinado
-    std::cout << "\n--- Testing Unsigned Form Execution ---" << std::endl;
-    Bureaucrat chief("Chief", 1);
-    ShrubberyCreationForm form("UnsignedForm");
-    
-    std::cout << "Form state: " << form << std::endl;
-    std::cout << "Trying to execute unsigned form:" << std::endl;
-    chief.execute(form);
-    
-    // Teste de tentar assinar um formulário já assinado
-    std::cout << "\n--- Testing Already Signed Form ---" << std::endl;
-    chief.signForm(form);
-    std::cout << "Form after signing: " << form << std::endl;
-    
-    std::cout << "Trying to sign already signed form:" << std::endl;
-    chief.signForm(form);
-}
 
-int main()
-{
-    std::cout << "TESTING BUREAUCRAT FORMS" << std::endl;
+int main() {
+    // Test basic intern functionality
+    testInternBasic();
     
-    // Testes para cada tipo de formulário
-    testShrubberyCreationForm();
-    testRobotomyRequestForm();
-    testPresidentialPardonForm();
-    
-    // Testes de casos especiais
-    testEdgeCases();
+    // Test intern with all form types
+    testInternAllForms();
     
     return 0;
 }

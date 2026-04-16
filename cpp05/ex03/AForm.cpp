@@ -60,24 +60,6 @@ void            AForm::beSigned(Bureaucrat &bureaucrat) {
     _isSigned = true;
 };
 
-/* void AForm::beExecuted(Bureaucrat const &bureaucrat) const
-{
-    if (!this->_isSigned)
-        throw AForm::FormNotSignedException();
-    if (bureaucrat.getGrade() > this->_gradeToexecute)
-        throw AForm::GradeTooLowException();
-}; */
-
-const char* AForm::FormNotSignedException::what() const throw()
-{
-    return ("Form is not Signed !");
-}
-
-const char* AForm::FileNotOpenedException::what() const throw()
-{
-    return ("Could not Open File");
-}
-
 std::ostream &operator<<(std::ostream &out, AForm &form)
 {
     std::cout << "Form name: " << form.getName() << std::endl;
