@@ -39,6 +39,6 @@ AForm   *Intern::makeForm(std::string formName, std::string target) {
             return (form[i](target));
         }
     }
-    std::cout << "Intern cannot create " << formName << std::endl;
+    std::cout << "Intern cannot create " << formName << " Form" << std::endl;
     throw (AForm::FormCreationException());
 };
