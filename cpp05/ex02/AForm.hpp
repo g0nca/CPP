@@ -55,16 +55,22 @@ class AForm
                 }
         };
 
+        class FormCreationException : public std::exception
+        {
+            public:
+                virtual const char *what() const throw()
+                {
+                    return ("Form creation failed");
+                }
+        }
+
         class FileNotOpenedException : public std::exception
         {
             public:
-                virtual const char* what() const throw();
-        };
-        
-        class FormNotSignedException : public std::exception
-        {
-            public:
-                virtual const char* what() const throw();
+                virtual const char* what() const throw()
+                {
+                    return ("Could not open file");
+                }
         };
 
 };
