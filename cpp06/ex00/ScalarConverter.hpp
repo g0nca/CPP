@@ -10,12 +10,12 @@
 
 enum ScalarDetectType
 {
-    CHAR,
-    INT,
-    FLOAT,
-    DOUBLE,
-    PSEUDO,
-    INVALID
+    PSEUDO, //0
+    CHAR,   //1
+    INT,    //2
+    FLOAT,  //3
+    DOUBLE, //4
+    INVALID //5
 };
 
 class ScalarConverter
@@ -33,6 +33,12 @@ class ScalarConverter
         static  bool    isChar(const std::string &str);
         static  bool    isInt(const std::string &str);
         static  bool    isFloat(const std::string &str);
+        static  bool    isDouble(const std::string &str);
+        static  bool    isPseudoLiteral(const std::string &str);
+
+        static void     convertChar(const std::string &);
+        static void     convertInt(const std::string &);
+        static void     convertFloat(const std::string &);
     public:
 
 
@@ -46,12 +52,44 @@ class ScalarConverter
                     return ("String is empty");
                 }
         };
+        class InvalidFormat : public std::exception
+        {
+            public:
+                const char *what() const throw ()
+                {
+                    return ("Invalid Format");
+                }
+        };
         class InvalidFloatNumber : public std::exception
         {
             public:
                 const char *what() const throw ()
                 {
                     return ("Invalid float number");
+                }
+        };
+        class InvalidSignals : public std::exception
+        {
+            public:
+                const char *what() const throw ()
+                {
+                    return ("Too much Signals");
+                }
+        };
+        class MultipleDotsOrNone : public std::exception
+        {
+            public:
+                const char *what() const throw ()
+                {
+                    return ("Multiple dots or none");
+                }
+        };
+        class InvalidDoubleNumber : public std::exception
+        {
+            public:
+                const char *what() const throw ()
+                {
+                    return ("Invalid double number");
                 }
         };
 };
