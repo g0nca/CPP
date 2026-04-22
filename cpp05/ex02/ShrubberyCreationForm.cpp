@@ -43,7 +43,7 @@ void ShrubberyCreationForm::execute(Bureaucrat const &executor) const
             throw AForm::FormNotSignedException();
 
         if (executor.getGrade() > this->getExecute())
-            throw AForm::GradeTooLowException();
+            throw AForm::GradeTooLowTooExecute();
 
         std::ofstream file((_target + "_shrubbery").c_str());
 
@@ -60,6 +60,7 @@ void ShrubberyCreationForm::execute(Bureaucrat const &executor) const
     }
     catch (const std::exception& e) {
         std::cerr << e.what() << std::endl;
+        throw (AForm::GradeTooLowTooExecute());
     }
 };
 

@@ -58,6 +58,7 @@ clean:
 
 fclean: clean
 	@$(RM) $(NAME) $(OBJ_DIR)
+	@rm -rf Garden_shrubbery
 	@echo "$(RED)[FCLEAN] Binary removed.$(RESET)"
 
 re: fclean all

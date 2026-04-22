@@ -34,7 +34,6 @@ class AForm
         int             getExecute() const;
 
         void            beSigned(Bureaucrat &bureaucrat);
-        //void            beExecuted(Bureaucrat const &bureaucrat) const;
         virtual void    execute(Bureaucrat const &bureaucrat) const = 0;
 
         class GradeTooHighException : public std::exception
@@ -55,21 +54,39 @@ class AForm
                 }
         };
 
+        class   GradeTooLowTooExecute : public std::exception
+        {
+            public:
+                const char* what() const throw()
+                {
+                    return ("Grade too low too execute");
+                }
+        };
+
         class FormCreationException : public std::exception
         {
             public:
-                virtual const char *what() const throw()
+                const char *what() const throw()
                 {
                     return ("Form creation failed");
                 }
-        }
+        };
 
         class FileNotOpenedException : public std::exception
         {
             public:
-                virtual const char* what() const throw()
+                const char* what() const throw()
                 {
                     return ("Could not open file");
+                }
+        };
+
+        class   FormNotSignedException : public std::exception
+        {
+            public:
+                const char* what() const throw()
+                {
+                    return ("Form is not Signed !");
                 }
         };
 

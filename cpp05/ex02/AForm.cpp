@@ -58,25 +58,8 @@ void            AForm::beSigned(Bureaucrat &bureaucrat) {
     if (bureaucrat.getGrade() > this->_gradeTosign)
         throw (AForm::GradeTooLowException());
     _isSigned = true;
+    std::cout << "Form Signed Check :" << this->_isSigned << std::endl; 
 };
-
-/* void AForm::beExecuted(Bureaucrat const &bureaucrat) const
-{
-    if (!this->_isSigned)
-        throw AForm::FormNotSignedException();
-    if (bureaucrat.getGrade() > this->_gradeToexecute)
-        throw AForm::GradeTooLowException();
-}; */
-
-const char* AForm::FormNotSignedException::what() const throw()
-{
-    return ("Form is not Signed !");
-}
-
-const char* AForm::FileNotOpenedException::what() const throw()
-{
-    return ("Could not Open File");
-}
 
 std::ostream &operator<<(std::ostream &out, AForm &form)
 {

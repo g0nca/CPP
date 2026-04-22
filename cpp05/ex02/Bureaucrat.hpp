@@ -49,6 +49,15 @@ class Bureaucrat
                 }
         };
 
+        class FormAlreadySigned : public std::exception
+        {
+            public:
+                const char *what() const throw ()
+                {
+                    return ("form already signed");
+                }
+        };
+
 };
 
 std::ostream &operator<<(std::ostream &out, Bureaucrat &bureaucrat);

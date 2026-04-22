@@ -58,7 +58,7 @@ void testIncrementDecrement()
         normal.incrementBureaucrat();
         std::cout << "After increment: " << normal << std::endl;
         
-        normal.incrementBureaucrat();
+        normal.decrementBureaucrat();
         std::cout << "After decrement: " << normal << std::endl;
     }
 	catch (std::exception& e)
@@ -86,7 +86,7 @@ void testIncrementDecrement()
         Bureaucrat lowest("Lowest", 150);
         std::cout << "Initial: " << lowest << std::endl;
         
-        lowest.incrementBureaucrat();
+        lowest.decrementBureaucrat();
         std::cout << "After decrement: " << lowest << std::endl;
     }
 	catch (std::exception& e)
@@ -109,7 +109,6 @@ void testGetters()
 void testMultipleChanges()
 {
     printHeader("MULTIPLE CHANGES TEST");
-    
     try
 	{
         Bureaucrat b("RiseFall", 75);
@@ -125,20 +124,17 @@ void testMultipleChanges()
         std::cout << "\nDemoting 15 times:" << std::endl;
         for (int i = 0; i < 15; i++)
 		{
-            b.incrementBureaucrat();
+            b.decrementBureaucrat();
             std::cout << "After demotion " << i + 1 << ": " << b << std::endl;
         }
         
         // This should cause an exception (would reach 151 if allowed)
         std::cout << "\nTrying to demote too far:" << std::endl;
-        for (int i = b.getGrade(); i < 150; i++)
+        for (int i = b.getGrade(); i < 152; i++)
 		{
             b.decrementBureaucrat();
             std::cout << "Current grade: " << b.getGrade() << std::endl;
         }
-        
-        b.decrementBureaucrat(); // This should throw exception
-        
     }
 	catch (std::exception& e)
 	{

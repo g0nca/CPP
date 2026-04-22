@@ -40,15 +40,15 @@ int             Bureaucrat::getGrade() const {
 };
 
 void            Bureaucrat::incrementBureaucrat(){
-    this->_grade++;
-    if (_grade > 150)
-        throw Bureaucrat::GradeTooLowException();
-};
-
-void            Bureaucrat::decrementBureaucrat(){
     this->_grade--;
     if (_grade < 1)
         throw Bureaucrat::GradeTooHighException();
+};
+
+void            Bureaucrat::decrementBureaucrat(){
+    this->_grade++;
+    if (_grade > 150)
+        throw Bureaucrat::GradeTooLowException();
 };
 
 std::ostream    &operator<<(std::ostream &out, Bureaucrat &bureaucrat)

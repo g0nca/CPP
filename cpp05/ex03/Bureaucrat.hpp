@@ -21,7 +21,6 @@ class Bureaucrat
 
         Bureaucrat &operator=(const Bureaucrat &copy);
 
-        //getter & setter
         std::string     getName() const;
         int             getGrade() const;
 
@@ -46,6 +45,15 @@ class Bureaucrat
                 const char *what() const throw ()
                 {
                     return ("Grade is too Low");
+                }
+        };
+
+        class FormAlreadySigned : public std::exception
+        {
+            public:
+                const char *what() const throw ()
+                {
+                    return ("form already signed");
                 }
         };
 
