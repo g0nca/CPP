@@ -7,6 +7,7 @@
 #include <cmath>
 #include <cstdlib>
 #include <cfloat>
+#include <iomanip>
 
 enum ScalarDetectType
 {
@@ -39,6 +40,7 @@ class ScalarConverter
         static void     convertChar(const std::string &);
         static void     convertInt(const std::string &);
         static void     convertFloat(const std::string &);
+        static void     convertDouble(const std::string &);
     public:
 
 
