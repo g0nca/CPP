@@ -36,7 +36,7 @@ void    RobotomyRequestForm::execute(Bureaucrat const &bureaucrat) const
                 if (!getIsSigned())
                         throw FormNotSignedException();
                 if (bureaucrat.getGrade() > this->getExecute())
-                        throw GradeTooLowException();
+                        throw GradeTooLowTooExecute();
                 std::srand(std::time(NULL));
                 std::cout << "BZZZZZ... drilling noises" << std::endl;
                 if(rand() % 2 == 0)
@@ -50,6 +50,7 @@ void    RobotomyRequestForm::execute(Bureaucrat const &bureaucrat) const
         }
         catch (std::exception& e) {
                 std::cerr << e.what() << std::endl;
+                throw (AForm::GradeTooLowTooExecute());
         }
 };
 

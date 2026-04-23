@@ -60,7 +60,10 @@ void ShrubberyCreationForm::execute(Bureaucrat const &executor) const
     }
     catch (const std::exception& e) {
         std::cerr << e.what() << std::endl;
-        throw (AForm::GradeTooLowTooExecute());
+        if (!getIsSigned())
+            throw AForm::FormNotSignedException();
+        else
+            throw (AForm::GradeTooLowTooExecute());
     }
 };
 

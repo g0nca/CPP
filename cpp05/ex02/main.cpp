@@ -91,6 +91,7 @@ void testPresidentialPardonForm()
     
     // Teste de execução com bureaucrat de alto nível em formulário já assinado
     std::cout << "\n--- Testing with High Level Bureaucrat ---" << std::endl;
+    highBureaucrat.signForm(form);
     highBureaucrat.execute(form);
 }
 
