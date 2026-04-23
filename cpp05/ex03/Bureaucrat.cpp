@@ -52,29 +52,25 @@ void            Bureaucrat::decrementBureaucrat(){
         throw Bureaucrat::GradeTooLowException();
 };
 
-
-void            Bureaucrat::signForm(AForm &form) {
-    try
-    {
-        if (form.getIsSigned())
-            throw Bureaucrat::FormAlreadySigned();
-        form.beSigned(*this);
-        std::cout << this->_name << " signed " << form.getName() << std::endl;
+void            Bureaucrat::execute(AForm const &form) {
+    try {
+        form.execute(*this);
+        std::cout << this->_name << " executed " << form.getName() << std::endl;
     }
-    catch (std::exception &e)
+    catch (std::exception& e)
     {
-        std::cout << this->_name << " couldn't sign " << form.getName() << " because " << e.what() << std::endl;  
+        std::cout << this->_name << " couldn't execute " << form.getName() << " because " << e.what() << std::endl;
     }
 };
 
-
 void            Bureaucrat::signForm(AForm &form) {
     try
     {
         if (form.getIsSigned())
             throw Bureaucrat::FormAlreadySigned();
         form.beSigned(*this);
-        std::cout << this->_name << " signed " << form.getName() << std::endl;
+        if (form.getIsSigned() == true)
+            std::cout << this->_name << " signed " << form.getName() << std::endl;
     }
     catch (std::exception &e)
     {

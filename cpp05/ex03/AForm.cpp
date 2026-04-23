@@ -55,7 +55,7 @@ void            AForm::beSigned(Bureaucrat &bureaucrat) {
 
     std::cout << "Grade Bureacrat " << bureaucrat.getGrade() << std::endl;
     std::cout << "Grade To Sign " << this->_gradeTosign << std::endl; 
-    if (bureaucrat.getGrade() < this->_gradeTosign)
+    if (bureaucrat.getGrade() > this->_gradeTosign)
         throw (AForm::GradeTooLowException());
     _isSigned = true;
     std::cout << "Form Signed Check :" << this->_isSigned << std::endl; 
