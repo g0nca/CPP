@@ -66,12 +66,12 @@ ScalarDetectType    ScalarConverter::detectType(const std::string &str)
         return CHAR;
     else if (isPseudoLiteral(str))
         return PSEUDO;
-    else if (isInt(str))
-        return INT;
     else if (((str[str.length() - 1] == 'f') || (str[str.length() - 1] == 'F')) && isFloat(str))
         return FLOAT;
     else if (isDouble(str))
         return DOUBLE;
+    else if (isInt(str))
+        return INT;
     return (INVALID);
 };
 
@@ -82,7 +82,7 @@ bool    ScalarConverter::isChar(const std::string &str)
 
 bool    ScalarConverter::isInt(const std::string &str)
 {
-    int  i = 0;
+    int  i = 0, n_count = 0;
     const int   size = str.length();
 
     if (str[i] == '-' || str[i] == '+')
@@ -91,8 +91,10 @@ bool    ScalarConverter::isInt(const std::string &str)
     {
         if (str[i] == '-' || str[i] == '+')
             throw (ScalarConverter::InvalidSignals());
-        if (!std::isdigit(str[i]))
-            return false;
+        if (std::isdigit(str[i]))
+            n_count++;
+        if (n_count > 0 && !(std::isdigit(str[i])))
+            throw (ScalarConverter::InvalidIntNumber());
         i++;
     }
     return true;
@@ -140,8 +142,10 @@ bool    ScalarConverter::isDouble(const std::string &str)
             n_count++;
         else if (str[i] == '.')
             dot++;
-        else
+        else if (dot > 0 && !(std::isdigit(str[i])))
             throw (ScalarConverter::InvalidDoubleNumber());
+        else
+            return false;
         i++;
     }
 

@@ -69,6 +69,14 @@ class ScalarConverter
                     return ("Invalid float number");
                 }
         };
+        class InvalidIntNumber : public std::exception
+        {
+            public:
+                const char *what() const throw ()
+                {
+                    return ("Invalid int number");
+                }
+        };
         class InvalidSignals : public std::exception
         {
             public:

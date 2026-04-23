@@ -1,6 +1,6 @@
 #include "ScalarConverter.hpp"
 
-void test(const std::string &input)
+/* void test(const std::string &input)
 {
     std::cout << "============================\n";
     std::cout << "Input: " << input << "\n";
@@ -64,8 +64,9 @@ int main()
     test("f42.0");
 
     return 0;
-}
-/* int main(int ac, char **av)
+} */
+ 
+int main(int ac, char **av)
 {
     if (ac != 2)
     {
@@ -75,4 +76,4 @@ int main()
     ScalarConverter::convert(av[1]);
 
     return (0);
-} */
+}
