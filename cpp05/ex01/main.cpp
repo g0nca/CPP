@@ -60,44 +60,50 @@ void testFormCreation()
 void testFormSigning()
 {
 	printHeader("FORM SIGNING TEST");
-	 
-	// Criação de burocratas com diferentes níveis
-	Bureaucrat bureaucrat_highLevel("Director", 1);
-	Bureaucrat bureaucrat_midLevel("Manager", 75);
-	Bureaucrat bureaucrat_lowLevel("Intern", 150);
-	 
-	std::cout << "Bureaucrats created:" << std::endl;
-	std::cout << bureaucrat_highLevel << std::endl;
-	std::cout << bureaucrat_midLevel << std::endl;
-	std::cout << bureaucrat_lowLevel << std::endl;
-	 
-	// Criação de formulários com diferentes requisitos
-	Form easyForm("Easy Form", 150, 150);
-	Form mediumForm("Medium Form", 75, 75);
-	Form hardForm("Hard Form", 1, 1);
-	 
-	std::cout << "\nForms created:" << std::endl;
-	std::cout << easyForm << std::endl;
-	std::cout << mediumForm << std::endl;
-	std::cout << hardForm << std::endl;
-	 
-	// Teste de assinatura: baixo nível tentando assinar formas de diferentes dificuldades
-	std::cout << "\n--- Low level bureaucrat signing attempts ---" << std::endl;
-	bureaucrat_lowLevel.signForm(easyForm);  // Deve conseguir assinar
-	bureaucrat_lowLevel.signForm(mediumForm); // Não deve conseguir assinar
-	bureaucrat_lowLevel.signForm(hardForm);   // Não deve conseguir assinar
-	 
-	// Teste de assinatura: nível médio tentando assinar
-	std::cout << "\n--- Medium level bureaucrat signing attempts ---" << std::endl;
-	bureaucrat_midLevel.signForm(easyForm);  // Já está assinado
-	bureaucrat_midLevel.signForm(mediumForm); // Deve conseguir assinar
-	bureaucrat_midLevel.signForm(hardForm);   // Não deve conseguir assinar
-	 
-	// Teste de assinatura: alto nível tentando assinar
-	std::cout << "\n--- High level bureaucrat signing attempts ---" << std::endl;
-	bureaucrat_highLevel.signForm(easyForm);  // Já está assinado
-	bureaucrat_highLevel.signForm(mediumForm); // Já está assinado
-	bureaucrat_highLevel.signForm(hardForm);   // Deve conseguir assinar
+	try
+	{
+		// Criação de burocratas com diferentes níveis
+		Bureaucrat bureaucrat_highLevel("Director", 444);
+		Bureaucrat bureaucrat_midLevel("Manager", 75);
+		Bureaucrat bureaucrat_lowLevel("Intern", 150);
+		
+		std::cout << "Bureaucrats created:" << std::endl;
+		std::cout << bureaucrat_highLevel << std::endl;
+		std::cout << bureaucrat_midLevel << std::endl;
+		std::cout << bureaucrat_lowLevel << std::endl;
+		
+		// Criação de formulários com diferentes requisitos
+		Form easyForm("Easy Form", 150, 150);
+		Form mediumForm("Medium Form", 75, 75);
+		Form hardForm("Hard Form", 1, 1);
+		
+		std::cout << "\nForms created:" << std::endl;
+		std::cout << easyForm << std::endl;
+		std::cout << mediumForm << std::endl;
+		std::cout << hardForm << std::endl;
+		
+		// Teste de assinatura: baixo nível tentando assinar formas de diferentes dificuldades
+		std::cout << "\n--- Low level bureaucrat signing attempts ---" << std::endl;
+		bureaucrat_lowLevel.signForm(easyForm);  // Deve conseguir assinar
+		bureaucrat_lowLevel.signForm(mediumForm); // Não deve conseguir assinar
+		bureaucrat_lowLevel.signForm(hardForm);   // Não deve conseguir assinar
+		
+		// Teste de assinatura: nível médio tentando assinar
+		std::cout << "\n--- Medium level bureaucrat signing attempts ---" << std::endl;
+		bureaucrat_midLevel.signForm(easyForm);  // Já está assinado
+		bureaucrat_midLevel.signForm(mediumForm); // Deve conseguir assinar
+		bureaucrat_midLevel.signForm(hardForm);   // Não deve conseguir assinar
+		
+		// Teste de assinatura: alto nível tentando assinar
+		std::cout << "\n--- High level bureaucrat signing attempts ---" << std::endl;
+		bureaucrat_highLevel.signForm(easyForm);  // Já está assinado
+		bureaucrat_highLevel.signForm(mediumForm); // Já está assinado
+		bureaucrat_highLevel.signForm(hardForm);   // Deve conseguir assinar
+	}
+	catch (std::exception &e)
+	{
+		std::cout << "Exception caught: " << e.what() << std::endl;
+	}
 }
  
 void testFormGetters()

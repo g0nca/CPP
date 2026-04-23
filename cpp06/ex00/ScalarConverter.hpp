@@ -41,9 +41,8 @@ class ScalarConverter
         static void     convertInt(const std::string &);
         static void     convertFloat(const std::string &);
         static void     convertDouble(const std::string &);
+        static void     convertPseudo(const std::string &);
     public:
-
-
         static void    convert(const std::string &str);
 
         class IsEmpty : public std::exception
