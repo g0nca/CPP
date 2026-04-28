@@ -16,6 +16,7 @@ Base*     generate(void)
 
 void    identify(Base* p)
 {
+    
     (void)p;
 };
 
