@@ -1,13 +1,13 @@
 #include "Serializer.hpp"
 
-int	main( int argc , char *argv[] ) {
-	(--argc, ++argv);
-	if (argc != 2) {
-		std::cout << "Correct usage: ./exec <string> <number>" << std::endl;
+int	main(int argc , char *argv[]) 
+{
+	if (argc != 3) {
+		std::cout << "Correct usage: ./Serializer <string> <number>" << std::endl;
 		return (1);
 	}
 
-	std::string	name = argv[0], number = argv[1];
+	std::string	name = argv[1], number = argv[2];
 	if (name.empty() || number.empty() || number.length() > 5)
 		return (1);
 
