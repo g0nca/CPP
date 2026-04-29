@@ -16,11 +16,31 @@ Base*     generate(void)
 
 void    identify(Base* p)
 {
-    
-    (void)p;
+    if (A *a = dynamic_cast<A*>(p))
+        std::cout << "* -> Pointer to A" << std::endl;
+    else if (B *b = dynamic_cast<B*>(p))
+        std::cout << "* -> Pointer to B" << std::endl;
+    else if (C *c = dynamic_cast<C*>(p))
+        std::cout << "* -> Pointer to C" << std::endl;
+
 };
 
 void    identify(Base& p)
 {
-    (void)p;
+    try {
+        (void)dynamic_cast<A&>(p);
+        std::cout << "& -> Reference to A " << std::endl;
+    }
+    catch (std::exception &e) { };
+    try {
+        (void)dynamic_cast<B&>(p);
+        std::cout << "& -> Reference to B" << std::endl;
+
+    }
+    catch (std::exception &e) { };
+    try {
+        (void)dynamic_cast<C&>(p);
+        std::cout << "& -> Reference to C" << std::endl;
+    }
+    catch (std::exception &e) { };
 };
