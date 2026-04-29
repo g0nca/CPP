@@ -1,25 +1,71 @@
 #include "Serializer.hpp"
 
-int	main(int argc , char *argv[]) 
+void printHeader(const std::string& title) {
+    std::cout << "\n============================================\n";
+    std::cout << "    TESTE: " << title << "\n";
+    std::cout << "============================================\n";
+}
+
+int main()
 {
-	if (argc != 3) {
-		std::cout << "Correct usage: ./Serializer <string> <number>" << std::endl;
-		return (1);
-	}
+    // TESTE 1
 
-	std::string	name = argv[1], number = argv[2];
-	if (name.empty() || number.empty() || number.length() > 5)
-		return (1);
+    printHeader("Memoria na Stack");
+    Data stackData;
+    stackData.name = "TesteStack";
+    stackData.value = 42;
 
-	Data		data = (Data){name, strtol(number.c_str(), NULL, 10)};
+    uintptr_t rawStack = Serializer::serialize(&stackData);
+    Data* ptrStack = Serializer::deserialize(rawStack);
 
-	uintptr_t	s = Serializer::serialize(&data);
+    std::cout << "Ponteiro Original : " << &stackData << "\n";
+    std::cout << "Valor Serializado : 0x" << std::hex << rawStack << std::dec << "\n";
+    std::cout << "Ponteiro Recuperado: " << ptrStack << "\n";
 
-	std::cout << "Original address  => " << &data << std::endl;
-	std::cout << "Serialized (dec)  => " << s << std::endl;
-	std::cout << "Serialized (hex)  => 0x" << std::hex << s << std::dec << std::endl;
-	std::cout << "Deserialized ptr  => " << Serializer::deserialize(s) << std::endl;
+    if (ptrStack == &stackData && ptrStack->name == "TesteStack" && ptrStack->value == 42)
+        std::cout << "SUCESSO: O endereco e os dados mantiveram-se intactos!\n";
+    else
+        std::cout << "FALHOU!\n";
 
-	std::cout << "Data [" << data.name << ", " << data.value << "]" << std::endl;
-	return (0);
+    // TESTE 2
+
+    printHeader("Memoria na Heap (new)");
+    Data* heapData = new Data;
+    heapData->name = "TesteHeap";
+    heapData->value = 999;
+
+    uintptr_t rawHeap = Serializer::serialize(heapData);
+    Data* ptrHeap = Serializer::deserialize(rawHeap);
+
+    std::cout << "Ponteiro Original : " << heapData << "\n";
+    std::cout << "Valor Serializado : 0x" << std::hex << rawHeap << std::dec << "\n";
+    std::cout << "Ponteiro Recuperado: " << ptrHeap << "\n";
+
+    if (ptrHeap == heapData && ptrHeap->name == "TesteHeap" && ptrHeap->value == 999)
+        std::cout << "SUCESSO: O endereco dinâmico manteve-se intacto!\n";
+    else
+        std::cout << "FALHOU!\n";
+
+    delete heapData;
+
+
+
+    // TESTE 3
+
+    printHeader("Ponteiro Nulo (Edge Case)");
+    
+    Data* nullData = NULL;
+    uintptr_t rawNull = Serializer::serialize(nullData);
+    Data* ptrNull = Serializer::deserialize(rawNull);
+
+    std::cout << "Ponteiro Original : " << nullData << "\n";
+    std::cout << "Valor Serializado : 0x" << std::hex << rawNull << std::dec << "\n";
+    std::cout << "Ponteiro Recuperado: " << ptrNull << "\n";
+
+    if (ptrNull == NULL)
+        std::cout << "SUCESSO: O programa sobreviveu a um ponteiro nulo!\n\n";
+    else
+        std::cout << "FALHOU: O ponteiro devia ser NULL (0x0)!\n\n";
+
+    return 0;
 }
