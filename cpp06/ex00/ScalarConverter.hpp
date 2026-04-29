@@ -85,12 +85,12 @@ class ScalarConverter
                     return ("Too much Signals");
                 }
         };
-        class MultipleDotsOrNone : public std::exception
+        class MultipleDots : public std::exception
         {
             public:
                 const char *what() const throw ()
                 {
-                    return ("Multiple dots or none");
+                    return ("Multiple dots");
                 }
         };
         class InvalidDoubleNumber : public std::exception

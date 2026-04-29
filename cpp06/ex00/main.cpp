@@ -1,6 +1,6 @@
 #include "ScalarConverter.hpp"
 
-/* void test(const std::string &input)
+void test(const std::string &input)
 {
     std::cout << "============================\n";
     std::cout << "Input: " << input << "\n";
@@ -20,42 +20,42 @@
 
 int main()
 {
-    // 🔹 CHAR
+    //CHAR
     test("a");
     test("Z");
 
-    // 🔹 INT
+    //INT
     test("0");
     test("42");
     test("-42");
     test("2147483647");
     test("-2147483648");
 
-    // 🔹 FLOAT
+    //FLOAT
     test("0.0f");
     test("42.0f");
     test("-42.5f");
     test(".42f");
     test("42.f");
 
-    // 🔹 DOUBLE
+    //DOUBLE
     test("0.0");
     test("42.0");
     test("-42.5");
     test(".42");
     test("42.");
 
-    // 🔹 PSEUDO FLOAT
+    //PSEUDO FLOAT
     test("nanf");
     test("+inff");
     test("-inff");
 
-    // 🔹 PSEUDO DOUBLE
+    //PSEUDO DOUBLE
     test("nan");
     test("+inf");
     test("-inf");
 
-    // 🔹 EDGE CASES
+    //EDGE CASES
     test("999999999999999999999999"); // overflow
     test("abc");
     test("42abc");
@@ -64,9 +64,9 @@ int main()
     test("f42.0");
 
     return 0;
-} */
+}
  
-int main(int ac, char **av)
+/* int main(int ac, char **av)
 {
     if (ac != 2)
     {
@@ -76,4 +76,5 @@ int main(int ac, char **av)
     ScalarConverter::convert(av[1]);
 
     return (0);
-}
+} */
+ 
