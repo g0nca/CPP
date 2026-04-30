@@ -2,7 +2,7 @@
 #                                   SETTINGS                                   #
 #==============================================================================#
 
-NAME = Swap
+NAME = Array
 
 CC = c++
 FLAGS = -Wall -Wextra -Werror -std=c++98
