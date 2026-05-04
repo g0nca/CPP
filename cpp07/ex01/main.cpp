@@ -70,5 +70,6 @@ int     main(void)
     ::iter(float_list, f_length, decrementFloatValue);
     std::cout << std::endl;
     ::iter(float_list, f_length, printFloatFunction);
+
     return (0);
 }

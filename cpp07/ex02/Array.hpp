@@ -13,6 +13,7 @@ template<typename T>class   Array
         Array(const Array& copy): _array(NULL), _length(0) {
             *this = copy;
         };
+
         Array   &operator=(const Array& copy){
             if (this != &copy)
             {
@@ -25,11 +26,13 @@ template<typename T>class   Array
             }
             return (*this);
         };
+
         T&   operator[](unsigned int index){
             if (index >= size())
                 throw Array::OutOfBoundsException();
             return (this->_array[index]);
         }
+
         ~Array(){
             delete[] _array;
         };
