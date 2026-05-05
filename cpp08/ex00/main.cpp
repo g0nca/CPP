@@ -8,7 +8,7 @@ int	main( void ) {
 	n.push_back(3);
 	n.push_back(2);
 	n.push_back(1);
-    
+
 
 	try {
 		std::cout << *(::easyfind(n, 5)) << std::endl;
