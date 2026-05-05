@@ -47,7 +47,7 @@ int     main(void)
 
     std::cout << std::endl << std::endl << "---> Testing with other type of data (std::string) <---" << std::endl;
 
-    std::string     s_array[] = {"Hello", "World", "of", "42", "School"};
+    std::string     s_array[] = {"", "World", "of", "42", "School"};
     size_t          s_length = 5;
 
     std::cout << "Using Template " << std::endl;

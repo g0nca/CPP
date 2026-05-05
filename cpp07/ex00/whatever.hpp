@@ -10,6 +10,15 @@ template <typename T>void swap(T& x, T& y)
     y = temp;
 }
 
+template <typename T>void swap(T*& x, T*& y)
+{
+    if (x == NULL || y == NULL )
+        return ;
+    T temp = x;
+    x = y;
+    y = temp;
+}
+
 template <typename T>T max(T x, T y)
 {
     if (x > y)
