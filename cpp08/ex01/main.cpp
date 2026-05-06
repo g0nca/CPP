@@ -2,6 +2,7 @@
 
 int main()
 {
+    std::srand(std::time(NULL));
     std::cout << "--- TEST 1: Subject ---" << std::endl;
     try {
         Span sp = Span(5);
@@ -73,7 +74,6 @@ int main()
     try {
         Span sp(15000);
         std::vector<int> bigVec;
-        std::srand(std::time(NULL));
 
         for (int i = 0; i < 15000; i++) {
             bigVec.push_back(std::rand());

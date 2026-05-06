@@ -8,8 +8,6 @@ int	main( void ) {
 	n.push_back(3);
 	n.push_back(2);
 	n.push_back(1);
-
-
 	try {
 		std::cout << *(::easyfind(n, 5)) << std::endl;
 		std::cout << *(::easyfind(n, 2)) << std::endl;
@@ -18,11 +16,10 @@ int	main( void ) {
 	catch(const std::exception& e) {
 		std::cerr << e.what() << std::endl;
 	}
-
-
-	const std::vector<int> nconst(n);
 	try {
-		std::cout << *(::easyfind(n, 5)) << std::endl;
+		const std::vector<int> const_vector(n);
+		std::cout << "Const Vectors" << std::endl;
+		std::cout << *(::easyfind(const_vector, 5)) << std::endl;
 	}
 	catch(const std::exception& e) {
 		std::cerr << e.what() << std::endl;
