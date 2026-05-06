@@ -7,6 +7,9 @@
 #include <vector>
 #include <typeinfo>
 #include <algorithm>
+#include <list>
+#include <cstdlib>
+#include <ctime>
 
 class   Span
 {
@@ -27,6 +30,16 @@ class   Span
 
         void    printSpan() const;
         
+        template<typename Iterator>
+        void    addNumber(Iterator begin, Iterator end)
+        {
+            unsigned int distance = std::distance(begin, end);
+
+            if (_list.size() + distance > _n)
+                throw (Span::MaxValueReached());
+            _list.insert(_list.end(), begin, end);
+        };
+
         class MaxValueReached : public std::exception
         {
             public:
