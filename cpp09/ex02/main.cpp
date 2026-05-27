@@ -6,6 +6,9 @@ int     main(int ac, char **av)
     {
         PmergeMe test;
         test.parsingInput(ac, av);
+        test.sort();
+        test.printVector();
+        //test.printDeque();
     }
     catch (std::exception &e)
     {
