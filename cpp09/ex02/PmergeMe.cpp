@@ -1,6 +1,9 @@
 #include "PmergeMe.hpp"
 
-PmergeMe::PmergeMe(){}
+PmergeMe::PmergeMe(){
+    _timeDeque = 0;
+    _timeVector = 0;
+}
 
 PmergeMe::PmergeMe( const PmergeMe& copy )
 {
