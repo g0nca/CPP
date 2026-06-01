@@ -1,12 +1,5 @@
 #include "PmergeMe.hpp"
 
-static double getCurrentTimeMicro()
-{
-    struct timeval tv;
-    gettimeofday(&tv, NULL);
-    return (tv.tv_sec * 1000000.0) + tv.tv_usec;
-}
-
 PmergeMe::PmergeMe(){}
 
 PmergeMe::PmergeMe( const PmergeMe& copy )
@@ -25,6 +18,13 @@ PmergeMe&   PmergeMe::operator=( const PmergeMe& copy)
 }
 
 PmergeMe::~PmergeMe(){}
+
+double PmergeMe::getCurrentTimeMicro()
+{
+    struct timeval tv;
+    gettimeofday(&tv, NULL);
+    return (tv.tv_sec * 1000000.0) + tv.tv_usec;
+}
 
 void    PmergeMe::parsingInput( int ac, char **av )
 {

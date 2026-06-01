@@ -60,5 +60,7 @@ class PmergeMe
 
         void    sort();
         void    printResults() const;
+
+        static double getCurrentTimeMicro();
 };
 
