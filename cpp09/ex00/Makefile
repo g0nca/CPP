@@ -15,7 +15,7 @@ SRC = main.cpp BitcoinExchange.cpp
 OBJ_DIR = obj
 OBJS = $(SRC:%.cpp=$(OBJ_DIR)/%.o)
 
-TEST_FILES = input.txt input_edge.txt empty_file.txt
+TEST_FILES = input.txt input_edge.txt empty_file.txt windows.txt
 
 #==============================================================================#
 #                                    EXTRA                                     #
@@ -82,6 +82,14 @@ not a date | 5\n" > $@
 
 empty_file.txt:
 	@touch $@
+	@echo "$(GREEN)[Created]$(RESET) $@"
+
+windows.txt:
+	@printf "date | value\r\n\
+2011-01-03 | 3\r\n\
+2011-01-03 | 2\r\n\
+2011-01-03 | 1\r\n\
+2011-01-03 | 1.2\r\n" > $@
 	@echo "$(GREEN)[Created]$(RESET) $@"
 
 #==============================================================================#
