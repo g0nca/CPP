@@ -4,13 +4,25 @@
 #include <sstream>
 #include <iostream>
 #include <cstdlib>
-#include <climits>
 #include <cerrno>
+#include <climits>
+#include <ctime>
+#include <sys/time.h>
 #include <vector>
 #include <deque>
 #include <set>
 #include <algorithm>
-#include "Error.hpp"
+#include <exception>
+
+class Error : public std::exception
+{
+    private:
+        std::string     _msg;
+    public:
+        Error(const std::string &msg) throw() : _msg(msg){};
+        virtual ~Error() throw() {};
+        virtual const char *what() const throw() { return _msg.c_str(); }
+};
 
 class PmergeMe
 {
@@ -28,11 +40,11 @@ class PmergeMe
         void                                insertPendantVector(std::vector<int> &chain, int pendant, int anchor);
 
         // ---------------- Deque Functions --------------
-        void    sortDeque();
-        std::deque<std::pair<int, int> >   makePairsDeque(const std::deque<int> &input, int &stranggler, bool &hasStranggler);
-        std::deque<int>                    mergeInsertDeque(std::deque<int> &maiores);
-        std::deque<size_t>                 generateJacobsthalOrderDeque(size_t n);
-        void                               insertPendantDeque(std::deque<int> &chain, int pendant, int anchor);
+        void                                sortDeque();
+        std::deque<std::pair<int, int> >    makePairsDeque(const std::deque<int> &input, int &straggler, bool &hasStraggler);
+        std::deque<int>                     mergeInsertDeque(std::deque<std::pair<int, int> > &pairs);
+        std::deque<size_t>                  generateJacobsthalOrderDeque(size_t n);
+        void                                insertPendantDeque(std::deque<int> &chain, int pendant, int anchor);
 
         size_t   jacobsthal(size_t n);
     public:
