@@ -225,8 +225,7 @@ std::vector<int> PmergeMe::mergeInsertVector(std::vector<std::pair<int, int> > &
     for (size_t i = 0; i < reorderedPairs.size(); ++i)
         chain.push_back(reorderedPairs[i].first);
 
-    // ✅ NOVO PASSO 5.5: inserir o subStraggler antes dos pendants
-    // (porque ele é um "maior" que faz parte da chain)
+    // inserir o subStraggler antes dos pendants
     if (subHasStraggler)
     {
         // procurar o par correspondente ao subStraggler nos pairs originais
@@ -256,9 +255,6 @@ std::vector<int> PmergeMe::mergeInsertVector(std::vector<std::pair<int, int> > &
         int anchor = reorderedPairs[idx].first;
         insertPendantVector(chain, pendant, anchor);
     }
-
-    // ✅ PASSO 7 REMOVIDO: o subStraggler já foi inserido no passo 5.5
-
     return chain;
 }
 
